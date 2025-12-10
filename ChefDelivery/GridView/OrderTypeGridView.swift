@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct OrderTypeGridView: View {
-    let orders = ["Restaurantes", "Farmácia", "Descontos", "Gourmet", "Mercados", "Pet", "Bebidas"]
+
+    var gridLayout: [GridItem]{
+        return Array(repeating: GridItem(.flexible(), spacing:  10), count: 2)
+    }
     
     var body: some View {
-        LazyHGrid(rows:[
-            GridItem(.fixed(100)),
-            GridItem(.fixed(100))
-        ]){
-            ForEach(orders, id: \.self){ orderItem in
-                Text(orderItem)
+        LazyHGrid(rows: gridLayout, spacing: 15){
+            ForEach(orderMock){ orderItem in
+                OrderTypeView(orderType: orderItem)
             }
         }
+        .frame(height: 200)
+        .padding(.horizontal, 15)
+        .padding(.top, 15)
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     OrderTypeGridView()
 }
