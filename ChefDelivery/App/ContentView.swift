@@ -11,15 +11,16 @@ struct ContentView: View {
     var body: some View {
         VStack {
             NavegationBar()
-            Spacer()
-  
+                .padding(.horizontal, 15)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack{
+                    OrderTypeGridView()
+                }
+            }
         }
-        .padding()
     }
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
     ContentView()
-        .padding()
-    
 }
